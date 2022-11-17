@@ -1,0 +1,40 @@
+<?php
+require_once ($_SERVER['DOCUMENT_ROOT'].'/db/db_connection/db_connection.php');
+require_once ($_SERVER['DOCUMENT_ROOT'].'/db/config/config.php');
+require_once ($_SERVER['DOCUMENT_ROOT'].'/global_config/config.php');
+global $path, $articleImagePath, $db_config;
+
+$conexion = Connection::connect($db_config);
+if (isset($_GET['article'])) $articlePK = $_GET['article'];
+
+$results = $conexion->query('SELECT * FROM aecProyecto_article aec WHERE aec.title="'.$articlePK.'";');
+$imageResults = $conexion->query('SELECT * FROM aecProyecto_image aec WHERE aec.article="'.$articlePK.'";');
+$article = $results->fetch();
+$image = $imageResults->fetch();
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initialscale=1.0">
+    <link rel="stylesheet" href="<?php $path.'views/art_view/styles/style.css'?>">
+    <title>Article</title>
+</head>
+<body>
+    <?php require_once($_SERVER['DOCUMENT_ROOT']."/structures/header/header.phtml"); ?>
+    <div style="margin: 20px">
+    <h2><?php echo $article['title'];?></h2>
+    <div style="height: 430px; float: right; width: 560px">
+        <img style="width: 100%; height: 100%" src="<?php 
+            if (isset($image['path']) && file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$articleImagePath.$image['path'])) {
+                echo $path.$articleImagePath.$image['path'];
+            } else {
+                echo $path.$articleImagePath.'SERVER_DEFAULT.jpg';
+            } ?>" alt="Imágen">
+    </div>
+    <h4><?php echo $article['content']; ?></h4>
+    </div>
+</body>

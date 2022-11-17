@@ -1,0 +1,55 @@
+<?php 
+    require_once ($_SERVER['DOCUMENT_ROOT'].'/global_config/config.php');
+    global $path, $articleImagePath, $articles, $images;
+?>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <?php if(isset($_POST['filter']) || (isset($_SESSION['user']['admin']) && $_SESSION['user']['admin'])):?>
+        <link rel="stylesheet" href="<?php echo $path.'views/list_view/styles/style.css'?>">
+    <?php else:?>
+        <link rel="stylesheet" href="<?php echo $path.'views/user_view/styles/style.css'?>">
+    <?php endif;?>
+    <title>Blog</title>
+</head>
+<body>
+    <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/structures/header/header.phtml') ?>
+    <div class="container">
+        <?php if(isset($_SESSION['user']['admin']) && $_SESSION['user']['admin']): echo '<button onclick="location.href="'.'" class="addArticle"><ion-icon name="add-circle"></ion-icon></button>'; endif;?>
+        <section class="articles">
+            <?php if(isset($_POST['filter']) || (isset($_SESSION['user']['admin']) && $_SESSION['user']['admin'])):?>
+                <?php foreach($articles as $article):?>
+                    <a class="article" href="<?php echo $path.'views/art_view/art_view.phtml?article='.$article['title']?>">
+                        <h2><?php echo $article['title']?></h2>
+                        <i><?php echo $article['artDate']?></i>
+                        <div class="adminBtns">
+                            <?php if(isset($_SESSION['user']['admin']) && $_SESSION['user']['admin']):?>
+                                <button class="adminActive" onclick="location.href=''"><ion-icon name="create-outline"></ion-icon></button>
+                                <button class="adminActive" onclick="location.href=''"><ion-icon name="trash-outline"></ion-icon></button>
+                            <?php endif;?>
+                        </div>
+                    </a>
+                <?php endforeach;?>
+            <?php else:?>
+                <?php for($article = 0; $article < count($articles); $article++): ?>
+                    <a class="article" href="<?php echo $path.'views/art_view/art_view.phtml?article='.$articles[$article]['title']?>">
+                        <h2><?php echo $articles[$article]['title']?></h2>
+                        <div class="img" style="background-image: url('<?php 
+                            echo (isset($images[$article]['path']) && file_exists($_SERVER['DOCUMENT_ROOT'].'/'.$articleImagePath.$images[$article]['path'])) ?
+                            $path.$articleImagePath.$images[$article]['path'] :
+                            $path.$articleImagePath.'SERVER_DEFAULT.jpg';
+                        ?>'); background-size: cover;"></div>
+                        <i><?php echo $articles[$article]['artDate']?></i>
+                        <p><?php echo $articles[$article]['summary']?></p>
+                    </a>
+                <?php endfor;?>
+            <?php endif;?>
+        </section>
+        <?php require_once($_SERVER['DOCUMENT_ROOT'] . '/structures/pagination/pagination.phtml') ?>
+    </div>
+</body>
+</html>

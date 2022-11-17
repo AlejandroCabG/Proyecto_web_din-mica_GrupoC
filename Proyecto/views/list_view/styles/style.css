@@ -1,0 +1,117 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 3rem;
+    background-color: rgb(231, 231, 231);
+}
+
+body::-webkit-scrollbar {
+    background: none;
+    width: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: var(--hglight-color);
+    border-radius: 5rem;
+}
+
+.container {
+    margin-top: .5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.addArticle {
+    position: absolute;
+    right: 15rem;
+    top: 0;
+    width: 2rem;
+    height: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.addArticle > * {
+    width: 2rem;
+    height: 2rem;
+    color: var(--pmry-color);
+    transition: .3s;
+}
+
+.addArticle:hover > ion-icon {
+    color: var(--hglight-color);
+}
+
+.articles {
+    margin-bottom: 3rem;
+}
+
+.article {
+    display: block;
+    background-color: var(--pmry-color);
+    align-content: center;
+    width: calc(100vw - 40rem);
+    text-decoration: none;
+    padding: 2rem 1rem;
+    border-bottom: 1px solid var(--hglight-color);
+    position: relative;
+    outline: 1px solid;
+}
+
+.article, .article > h2, .article > i {
+    transition: .3s;
+}
+
+.article:hover {
+    background-color: var(--hglight-color);
+}
+
+.article > * {
+    display: inline;
+    outline: 1px solid;
+}
+
+.article > h2 {
+    color: var(--bg-color);
+}
+
+.article:hover > h2 {
+    color: var(--pmry-color);
+}
+
+.article > i {
+    color: var(--hglight-color);
+    position: absolute;
+    right: 1rem;
+}
+
+.article:hover > i {
+    color: var(--bg-color);
+}
+
+.adminBtns {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.adminActive {
+    width: 3rem;
+    height: 3rem;
+}
+
+.adminActive > * {
+    width: 2rem;
+    height: 2rem;
+}
+
+div.adminBtns > button.adminActive {
+    background: none;
+}

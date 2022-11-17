@@ -1,0 +1,37 @@
+.navPage > ul {
+    outline: 1px solid;
+    max-width: 40rem;
+    width: calc(200px + 2rem);
+    list-style: none;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
+.navPage li {
+    background-color: var(--hglight-color);
+    border-radius: 10px;
+    transition: .3s;
+}
+
+.navPage li:hover {
+    background-color: #d5541d;
+}
+
+.navPage li, .navPage a {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: var(--bg-color);
+}
+
+.navPage li.active {
+    background-color: var(--pmry-color);
+}
+
+.navPage li.disabled {
+    background-color: #797979;
+    cursor: not-allowed;
+}

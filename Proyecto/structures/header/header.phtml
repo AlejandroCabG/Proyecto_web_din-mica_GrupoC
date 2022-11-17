@@ -1,0 +1,24 @@
+<?php global $path;?>
+<header>
+    <nav>
+        <ul>
+            <li><a href="#" class="loginLink formLink">Login</a></li>
+            <li><a href="#" class="registerLink formLink">Registrarse</a></li>
+        </ul>
+    </nav>
+    <div class="imgContainer">
+        <a href="<?php echo $path."index.php"?>" class="logoLink">
+            <img src="<?php echo $path.'structures/img/Blogger.png'?>" width="70px" height="70px" alt="Logo">
+        </a>
+    </div>
+    <form action="<?php echo $path.'controllers/view_controller/view_controller.php';?>" method="post">
+        <input type="text" name="filter" id="filter" class="filter" placeholder="Buscar" autocomplete="off">
+        <ion-icon name="search"></ion-icon>
+    </form>
+</header>
+<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+<link rel="stylesheet" href="<?php echo $path.'structures/header/style.css'?>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">

@@ -1,0 +1,27 @@
+<section class="navPage">
+    <ul>
+        <?php global $page; if ($page == 1):?>
+            <li class="disabled">&laquo;</li>
+        <?php else: ?>
+            <li><a href="?page=<?php echo $page - 1?>">&laquo;</a></li>
+        <?php endif;?>
+
+        <?php
+            global $totalPages;
+            for ($i = 1; $i <= $totalPages; $i++) {
+                if ($i == $page) {
+                    echo "<li class='active'><a href='?page=$i'>" . $i . '</a></li>';
+                } else {
+                    echo "<li><a href='?page=$i'>" . $i . '</a></li>';
+                }
+            }
+        ?>
+
+        <?php if ($page == $totalPages):?>
+            <li class="disabled">&raquo;</li>
+        <?php else: ?>
+            <li><a href="?page=<?php echo $page + 1?>">&raquo;</a></li>
+        <?php endif;?>
+    </ul>
+</section>
+<link rel="stylesheet" href="<?php global $path; echo $path.'structures/pagination/style.css'?>">
